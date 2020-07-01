@@ -60,7 +60,10 @@ export default {
       isDataLoaded: false,
       isConnectionLost: false,
       data: {
-        positif: 0
+        positif: "_",
+        meninggal: "_",
+        sembuh: "_",
+        dirawat:"_"
       }
     };
   },
@@ -70,8 +73,6 @@ export default {
   methods: {
     async fetchData() {
       let data = await kawalCoronaService.getIndonesiaCoronaData();
-
-      data.aktif = data.positif - data.meninggal - data.sembuh;
 
       this.data = data;
     }

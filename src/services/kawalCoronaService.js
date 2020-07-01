@@ -14,8 +14,20 @@ const getIndonesiaCoronaData = async () => {
     return response.data[0]
 }
 
+const getIndonesiaProvincesCoronaData = async () => {
+    let response = await Axios.get(apiEndPoint + 'indonesia/provinsi/', {
+        headers: {
+            // remove headers
+        },
+        withCredentials: false
+    })
+    
+    return response.data
+}
+
 
 const kawalCoronaService = {
     getIndonesiaCoronaData,
+    getIndonesiaProvincesCoronaData
 }
 export default kawalCoronaService;

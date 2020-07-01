@@ -11,12 +11,13 @@
           width="40"
         />
         <v-toolbar-title class="mr-5">Cegah Covid</v-toolbar-title>
-
-        <v-btn text to="/Indonesia">Data Indonesia</v-btn>
-
-        <v-btn text>Data Dunia</v-btn>
       </div>
+        <v-tabs color="red" show-arrows="true" optional="true">
+          <v-tab to="/">Beranda</v-tab>
 
+          <v-tab to="/Indonesia">Covid-19 Indonesia</v-tab>
+          <!-- <v-tab>Data Dunia</v-tab> -->
+        </v-tabs>
       <v-spacer></v-spacer>
     </v-app-bar>
 
