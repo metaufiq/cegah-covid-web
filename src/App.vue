@@ -20,11 +20,11 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <div id="app">
         <router-view />
       </div>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
