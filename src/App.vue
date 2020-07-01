@@ -12,7 +12,8 @@
         />
         <v-toolbar-title class="mr-5">Cegah Covid</v-toolbar-title>
 
-        <v-btn text>Data Indonesia</v-btn>
+        <v-btn text to="/Indonesia">Data Indonesia</v-btn>
+
         <v-btn text>Data Dunia</v-btn>
       </div>
 
