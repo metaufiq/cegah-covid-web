@@ -9,6 +9,7 @@
                 <v-card-text class="text-h3">Total Kasus</v-card-text>
                 <v-card-text class="text-h3">{{data.positif}}</v-card-text>
               </div>
+              <v-btn @click="$vuetify.goTo('#provinsi-table')" color="red" dark>Lihat Data Provinsi</v-btn>
             </v-col>
             <v-col class="justify-center align-center">
               <v-row>

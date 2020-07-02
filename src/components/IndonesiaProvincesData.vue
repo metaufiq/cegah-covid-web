@@ -5,6 +5,7 @@
       :items="data"
       :items-per-page="5"
       class="elevation-1"
+      id="provinsi-table"
     >
     <template #item.positif="{ item }">{{ item.attributes.Kasus_Posi - item.attributes.Kasus_Semb - item.attributes.Kasus_Meni }}</template>
     </v-data-table>
