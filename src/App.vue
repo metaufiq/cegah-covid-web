@@ -16,6 +16,8 @@
           <v-tab to="/">Beranda</v-tab>
 
           <v-tab to="/Indonesia">Covid-19 Indonesia</v-tab>
+          <v-tab to="/Dunia">Covid-19 Dunia</v-tab>
+
           <!-- <v-tab>Data Dunia</v-tab> -->
         </v-tabs>
       <v-spacer></v-spacer>

@@ -53,7 +53,7 @@
 
 
 <script>
-import kawalCoronaService from "../services/kawalCoronaService";
+import kawalCoronaIndonesiaService from "../../services/kawalCorona/IndonesiaService";
 export default {
   name: "IndonesiaCumulativeData",
   data() {
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      let data = await kawalCoronaService.getIndonesiaCoronaData();
+      let data = await kawalCoronaIndonesiaService.getIndonesiaCoronaData();
 
       this.data = data;
     }

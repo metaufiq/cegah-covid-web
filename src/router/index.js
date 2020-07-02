@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Indonesia from '../views/Indonesia.vue'
-
+import World from '../views/World.vue'
 
 Vue.use(VueRouter)
 
@@ -14,11 +14,19 @@ Vue.use(VueRouter)
   },
   {
     path: '/Indonesia',
-    name: 'About',
+    name: 'Indonesia',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: Indonesia
+  },
+  {
+    path: '/Dunia',
+    name: 'World',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: World
   }
 ]
 

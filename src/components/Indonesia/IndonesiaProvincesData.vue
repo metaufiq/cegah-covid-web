@@ -13,7 +13,7 @@
 
 
 <script>
-import kawalCoronaService from "../services/kawalCoronaService";
+import kawalCoronaIndonesiaService from "../../services/kawalCorona/IndonesiaService";
 
 export default {
   name: "IndonesiaProvincesData",
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      let data = await kawalCoronaService.getIndonesiaProvincesCoronaData();
+      let data = await kawalCoronaIndonesiaService.getIndonesiaProvincesCoronaData();
     
       data = data.filter((provinsi)=>{
           return provinsi.attributes

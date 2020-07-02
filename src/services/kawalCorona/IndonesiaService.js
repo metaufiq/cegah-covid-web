@@ -1,10 +1,10 @@
 import Axios from "axios";
-import url from "./DisableCorsURL";
+import url from "../DisableCorsURL";
 
-const apiEndPoint = url+'https://api.kawalcorona.com/';
+const apiEndPoint = url+'https://api.kawalcorona.com/indonesia/';
 
 const getIndonesiaCoronaData = async () => {
-    let response = await Axios.get(apiEndPoint + 'indonesia/', {
+    let response = await Axios.get(apiEndPoint + '', {
         headers: {
             // remove headers
         },
@@ -15,7 +15,7 @@ const getIndonesiaCoronaData = async () => {
 }
 
 const getIndonesiaProvincesCoronaData = async () => {
-    let response = await Axios.get(apiEndPoint + 'indonesia/provinsi/', {
+    let response = await Axios.get(apiEndPoint + 'provinsi/', {
         headers: {
             // remove headers
         },
@@ -26,8 +26,8 @@ const getIndonesiaProvincesCoronaData = async () => {
 }
 
 
-const kawalCoronaService = {
+const kawalCoronaIndonesiaService = {
     getIndonesiaCoronaData,
     getIndonesiaProvincesCoronaData
 }
-export default kawalCoronaService;
+export default kawalCoronaIndonesiaService;
