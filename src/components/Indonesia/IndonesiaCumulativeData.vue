@@ -61,10 +61,10 @@ export default {
       isDataLoaded: false,
       isConnectionLost: false,
       data: {
-        positif: "_",
-        meninggal: "_",
-        sembuh: "_",
-        dirawat:"_"
+        positif: "0",
+        meninggal: "0",
+        sembuh: "0",
+        dirawat:"0"
       }
     };
   },

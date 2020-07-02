@@ -20,7 +20,7 @@
                     </v-row>
                     <v-row
                       class="justify-center align-center text-h4 yellow--text text--darken-2"
-                    >{{data.dirawat}}</v-row>
+                    >{{data.dirawat == "0" ? data.dirawat : data.dirawat | numFormat}}</v-row>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -28,7 +28,7 @@
                     <v-row class="justify-center align-center">
                       <v-card-text class="text-h4">Sembuh</v-card-text>
                     </v-row>
-                    <v-row class="justify-center align-center text-h4 green--text">{{data.sembuh}}</v-row>
+                    <v-row class="justify-center align-center text-h4 green--text">{{data.sembuh }}</v-row>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -51,8 +51,8 @@
 
 <script>
 import kawalCoronaWorldService from "../../services/kawalCorona/WorldService";
-import numeral from 'numeral';
-import numFormat from 'vue-filter-number-format';
+// import numFormat from 'vue-filter-number-format';
+
 export default {
   name: "WorldCumulativeData",
   data() {
@@ -60,10 +60,10 @@ export default {
       isDataLoaded: false,
       isConnectionLost: false,
       data: {
-        positif: "_",
-        meninggal: "_",
-        sembuh: "_",
-        dirawat: "_"
+        positif: "0",
+        meninggal: "0",
+        sembuh: "0",
+        dirawat: "0"
       }
     };
   },
