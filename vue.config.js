@@ -3,5 +3,5 @@ module.exports = {
     "vuetify"
   ],
 
-  "publicPath": process.env.NODE_ENV === 'production' ? "/cegah-covid-web/" : '/'
+  // "publicPath": process.env.NODE_ENV === 'production' ? "/cegah-covid-web/" : '/'
 }
