@@ -13,7 +13,7 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/Indonesia',
+    path: '/indonesia',
     name: 'Indonesia',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -21,7 +21,7 @@ Vue.use(VueRouter)
     component: Indonesia
   },
   {
-    path: '/Dunia',
+    path: '/dunia',
     name: 'World',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
