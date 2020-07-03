@@ -21,6 +21,9 @@
           <!-- <v-tab>Data Dunia</v-tab> -->
         </v-tabs>
       <v-spacer></v-spacer>
+        <v-btn icon  href="https://github.com/metaufiq/cegah-covid-web" target="_blank">
+          <v-icon >mdi-github</v-icon>
+        </v-btn>
     </v-app-bar>
 
     <v-main>
