@@ -1,13 +1,12 @@
 <template>
-
-    <v-data-table
-      :headers="headers"
-      :items="data"
-      :items-per-page="5"
-      class="elevation-1"
-      id="provinsi-table"
-    >
-    </v-data-table>
+  <v-data-table
+    :headers="headers"
+    :items="data"
+    :items-per-page="5"
+    class="elevation-1"
+    id="provinsi-table"
+    loading="!this.isDataLoaded"
+  ></v-data-table>
 </template>
 
 
@@ -23,31 +22,52 @@ export default {
       data: [],
       headers: [
         {
-          text: 'Provinsi',
-          align: 'start',
+          text: "Provinsi",
+          align: "start",
           sortable: false,
-          value: 'attributes.Country_Region',
+          value: "attributes.Country_Region"
         },
-        { text: 'Positif', value: 'attributes.Active',sortable: false,align: 'center' },
-        { text: 'Sembuh', value: 'attributes.Recovered',sortable: false,align: 'center' },
-        { text: 'Meninggal', value: 'attributes.Deaths',sortable: false,align: 'center' },
-        { text: 'Total Kasus', value: 'attributes.Confirmed',sortable: false,align: 'center' },
-
-     ]
+        {
+          text: "Positif",
+          value: "attributes.Active",
+          sortable: false,
+          align: "center"
+        },
+        {
+          text: "Sembuh",
+          value: "attributes.Recovered",
+          sortable: false,
+          align: "center"
+        },
+        {
+          text: "Meninggal",
+          value: "attributes.Deaths",
+          sortable: false,
+          align: "center"
+        },
+        {
+          text: "Total Kasus",
+          value: "attributes.Confirmed",
+          sortable: false,
+          align: "center"
+        }
+      ]
     };
   },
+
   created() {
     this.fetchData();
   },
   methods: {
     async fetchData() {
       let data = await kawalCoronaWorldService.getWorldCoronaData();
-      
-      data = data.filter((country)=>{
-          return country.attributes
-      })
-      
+
+      data = data.filter(country => {
+        return country.attributes;
+      });
+
       this.data = data;
+      this.isDataLoaded = true;
     }
   }
 };

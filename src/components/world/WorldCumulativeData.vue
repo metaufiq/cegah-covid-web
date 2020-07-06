@@ -3,40 +3,63 @@
     <v-col>
       <v-card class="mx-auto" color="white">
         <v-row align="center" justify="center">
-          <v-col>
+          <v-col v-if="data.positif!='0'">
             <div class="d-flex flex-column">
               <v-card-text class="text-h3">Total Kasus</v-card-text>
               <v-card-text class="text-h3">{{data.positif}}</v-card-text>
             </div>
             <v-btn @click="$vuetify.goTo('#provinsi-table')" color="red" dark>Lihat Data Negara</v-btn>
           </v-col>
+          <v-col v-else>
+            <div class="d-flex flex-column">
+              <v-skeleton-loader class="mx-auto mb-8" width="250" height="70" type="image"></v-skeleton-loader>
+
+              <v-skeleton-loader class="mx-auto mb-5" width="180" height="70" type="image"></v-skeleton-loader>
+            </div>
+            <v-skeleton-loader class="mx-auto mb-5" width="180" height="50" type="image"></v-skeleton-loader>
+          </v-col>
           <v-col class="justify-center align-center">
             <v-row>
               <v-col>
                 <v-row>
-                  <v-col>
+                  <v-col v-if="data.dirawat != '0'">
                     <v-row class="justify-center align-center">
                       <v-card-text class="text-h4">Positif</v-card-text>
                     </v-row>
                     <v-row
                       class="justify-center align-center text-h4 yellow--text text--darken-2"
-                    >{{data.dirawat == "0" ? data.dirawat : data.dirawat | numFormat}}</v-row>
+                    >{{data.dirawat | numFormat}}</v-row>
+                  </v-col>
+                  <v-col v-else>
+                    <v-skeleton-loader class="mx-auto mb-8" width="200" height="50" type="image"></v-skeleton-loader>
+
+                    <v-skeleton-loader class="mx-auto mb-5" width="140" height="50" type="image"></v-skeleton-loader>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col>
+                  <v-col v-if="data.sembuh != '0'">
                     <v-row class="justify-center align-center">
                       <v-card-text class="text-h4">Sembuh</v-card-text>
                     </v-row>
                     <v-row class="justify-center align-center text-h4 green--text">{{data.sembuh }}</v-row>
                   </v-col>
+                  <v-col v-else>
+                    <v-skeleton-loader class="mx-auto mb-8" width="200" height="50" type="image"></v-skeleton-loader>
+
+                    <v-skeleton-loader class="mx-auto mb-5" width="140" height="50" type="image"></v-skeleton-loader>
+                  </v-col>
                 </v-row>
                 <v-row>
-                  <v-col>
+                  <v-col v-if="data.meninggal != '0'">
                     <v-row class="justify-center align-center">
                       <v-card-text class="text-h4">Meninggal</v-card-text>
                     </v-row>
                     <v-row class="justify-center align-center text-h4 red--text">{{data.meninggal}}</v-row>
+                  </v-col>
+                  <v-col v-else>
+                    <v-skeleton-loader class="mx-auto mb-8" width="200" height="50" type="image"></v-skeleton-loader>
+
+                    <v-skeleton-loader class="mx-auto mb-5" width="140" height="50" type="image"></v-skeleton-loader>
                   </v-col>
                 </v-row>
               </v-col>
@@ -51,13 +74,11 @@
 
 <script>
 import kawalCoronaWorldService from "../../services/kawalCorona/WorldService";
-// import numFormat from 'vue-filter-number-format';
 
 export default {
   name: "WorldCumulativeData",
   data() {
     return {
-      isDataLoaded: false,
       isConnectionLost: false,
       data: {
         positif: "0",
@@ -77,8 +98,7 @@ export default {
         this.fetchDataDeaths(),
         this.fetchDataRecovered()
       ]);
-        console.log(parseInt(this.data.positif.replace(",", "").replace(",", "")));
-        
+
       this.data.dirawat =
         parseInt(this.data.positif.replace(",", "").replace(",", "")) -
         (parseInt(this.data.meninggal.replace(",", "").replace(",", "")) +
