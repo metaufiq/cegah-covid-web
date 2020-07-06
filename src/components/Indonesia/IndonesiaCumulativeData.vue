@@ -1,61 +1,76 @@
 <template>
+  <v-row>
+    <v-col>
+      <v-row class="justify-center align-center" v-if="this.isDataLoaded">
+        <v-col>
+          <v-card class="mx-auto" color="white">
+            <v-row align="center" justify="center">
+              <v-col>
+                <div class="d-flex flex-column">
+                  <v-card-text class="text-h3">Total Kasus</v-card-text>
+                  <v-card-text class="text-h3">{{data.positif}}</v-card-text>
+                </div>
+                <v-btn
+                  @click="$vuetify.goTo('#provinsi-table')"
+                  color="red"
+                  dark
+                >Lihat Data Provinsi</v-btn>
+              </v-col>
+              <v-col class="justify-center align-center">
+                <v-row>
+                  <v-col>
+                    <v-row>
+                      <v-col>
+                        <v-row class="justify-center align-center">
+                          <v-card-text class="text-h4">Positif</v-card-text>
+                        </v-row>
+                        <v-row
+                          class="justify-center align-center text-h4 yellow--text text--darken-2"
+                        >{{data.dirawat}}</v-row>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col>
+                        <v-row class="justify-center align-center">
+                          <v-card-text class="text-h4">Sembuh</v-card-text>
+                        </v-row>
+                        <v-row
+                          class="justify-center align-center text-h4 green--text"
+                        >{{data.sembuh}}</v-row>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col>
+                        <v-row class="justify-center align-center">
+                          <v-card-text class="text-h4">Meninggal</v-card-text>
+                        </v-row>
+                        <v-row
+                          class="justify-center align-center text-h4 red--text"
+                        >{{data.meninggal}}</v-row>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+      <ShimmerIndonesiaCumulativeData v-else></ShimmerIndonesiaCumulativeData>
 
-    <v-row class="justify-center align-center">
-      <v-col>
-        <v-card class="mx-auto" color="white">
-          <v-row align="center" justify="center">
-            <v-col>
-              <div class="d-flex flex-column">
-                <v-card-text class="text-h3">Total Kasus</v-card-text>
-                <v-card-text class="text-h3">{{data.positif}}</v-card-text>
-              </div>
-              <v-btn @click="$vuetify.goTo('#provinsi-table')" color="red" dark>Lihat Data Provinsi</v-btn>
-            </v-col>
-            <v-col class="justify-center align-center">
-              <v-row>
-                <v-col>
-                  <v-row>
-                    <v-col>
-                      <v-row class="justify-center align-center">
-                        <v-card-text class="text-h4">Positif</v-card-text>
-                      </v-row>
-                      <v-row
-                        class="justify-center align-center text-h4 yellow--text text--darken-2"
-                      >{{data.dirawat}}</v-row>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col>
-                      <v-row class="justify-center align-center">
-                        <v-card-text class="text-h4">Sembuh</v-card-text>
-                      </v-row>
-                      <v-row class="justify-center align-center text-h4 green--text">{{data.sembuh}}</v-row>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col>
-                      <v-row class="justify-center align-center">
-                        <v-card-text class="text-h4">Meninggal</v-card-text>
-                      </v-row>
-                      <v-row
-                        class="justify-center align-center text-h4 red--text"
-                      >{{data.meninggal}}</v-row>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 
 <script>
 import kawalCoronaIndonesiaService from "../../services/kawalCorona/IndonesiaService";
+import ShimmerIndonesiaCumulativeData from "./ShimmerIndonesiaCumulativeData"
 export default {
   name: "IndonesiaCumulativeData",
+  components:{
+    ShimmerIndonesiaCumulativeData
+  },
   data() {
     return {
       isDataLoaded: false,
@@ -64,7 +79,7 @@ export default {
         positif: "0",
         meninggal: "0",
         sembuh: "0",
-        dirawat:"0"
+        dirawat: "0"
       }
     };
   },
@@ -76,6 +91,7 @@ export default {
       let data = await kawalCoronaIndonesiaService.getIndonesiaCoronaData();
 
       this.data = data;
+      this.isDataLoaded = true
     }
   }
 };

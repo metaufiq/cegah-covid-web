@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="white">
+    <v-app-bar app  color="white">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -12,7 +12,7 @@
         />
         <v-toolbar-title class="mr-5">Cegah Covid</v-toolbar-title>
       </div>
-        <v-tabs color="red" show-arrows="true" optional="true">
+        <v-tabs color="red">
           <v-tab to="/">Beranda</v-tab>
 
           <v-tab to="/indonesia">Covid-19 Indonesia</v-tab>
