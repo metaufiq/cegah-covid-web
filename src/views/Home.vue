@@ -1,5 +1,6 @@
 <template>
   <v-container>
+  <AppBar></AppBar>
     <v-row class="justify-center align-center">
       <v-col>
         <v-img
@@ -28,7 +29,12 @@
 </template>
 
 <script>
+import AppBar from '../components/common/AppBar'
+
 export default {
-  name: "Home"
+  name: "Home",
+  components:{
+    AppBar
+  }
 };
 </script>

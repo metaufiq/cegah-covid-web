@@ -1,31 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar app  color="white">
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="./assets/logo_only.png"
-          transition="scale-transition"
-          width="40"
-        />
-        <v-toolbar-title class="mr-5">Cegah Covid</v-toolbar-title>
-      </div>
-        <v-tabs color="red">
-          <v-tab to="/">Beranda</v-tab>
-
-          <v-tab to="/indonesia">Covid-19 Indonesia</v-tab>
-          <v-tab to="/dunia">Covid-19 Dunia</v-tab>
-
-          <!-- <v-tab>Data Dunia</v-tab> -->
-        </v-tabs>
-      <v-spacer></v-spacer>
-        <v-btn icon  href="https://github.com/metaufiq/cegah-covid-web" target="_blank">
-          <v-icon >mdi-github</v-icon>
-        </v-btn>
-    </v-app-bar>
-
     <v-main>
       <div id="app">
         <router-view />
