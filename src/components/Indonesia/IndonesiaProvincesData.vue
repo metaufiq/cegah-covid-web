@@ -1,15 +1,30 @@
 <template>
-
+  <v-card>
+    <v-card-title>
+      Cegah Covid
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Cari Provinsi"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
     <v-data-table
       :headers="headers"
       :items="data"
       :items-per-page="5"
+      :search="search"
       class="elevation-1"
       id="provinsi-table"
-      loading = !this.isDataLoaded
+      loading="!this.isDataLoaded"
     >
-    <template #item.positif="{ item }">{{ item.attributes.Kasus_Posi - item.attributes.Kasus_Semb - item.attributes.Kasus_Meni }}</template>
+      <template
+        #item.positif="{ item }"
+      >{{ item.attributes.Kasus_Posi - item.attributes.Kasus_Semb - item.attributes.Kasus_Meni }}</template>
     </v-data-table>
+  </v-card>
 </template>
 
 
@@ -20,22 +35,41 @@ export default {
   name: "IndonesiaProvincesData",
   data() {
     return {
+      search: "",
       isDataLoaded: false,
       isConnectionLost: false,
       data: [],
       headers: [
         {
-          text: 'Provinsi',
-          align: 'start',
+          text: "Provinsi",
+          align: "start",
           sortable: false,
-          value: 'attributes.Provinsi',
+          value: "attributes.Provinsi",
+          
         },
-        { text: 'Positif', value: 'positif',sortable: false,align: 'center' },
-        { text: 'Sembuh', value: 'attributes.Kasus_Semb',sortable: false,align: 'center' },
-        { text: 'Meninggal', value: 'attributes.Kasus_Meni',sortable: false,align: 'center' },
-        { text: 'Total Kasus', value: 'attributes.Kasus_Posi',sortable: false,align: 'center' },
-
-     ]
+        { text: "Positif", value: "positif", sortable: false, align: "center",filter:false },
+        {
+          text: "Sembuh",
+          value: "attributes.Kasus_Semb",
+          sortable: false,
+          align: "center",
+          filter:false
+        },
+        {
+          text: "Meninggal",
+          value: "attributes.Kasus_Meni",
+          sortable: false,
+          align: "center",
+          filter:false
+        },
+        {
+          text: "Total Kasus",
+          value: "attributes.Kasus_Posi",
+          sortable: false,
+          align: "center",
+          filter:false
+        }
+      ]
     };
   },
   created() {
@@ -44,13 +78,13 @@ export default {
   methods: {
     async fetchData() {
       let data = await kawalCoronaIndonesiaService.getIndonesiaProvincesCoronaData();
-    
-      data = data.filter((provinsi)=>{
-          return provinsi.attributes
-      })
-      
+
+      data = data.filter(provinsi => {
+        return provinsi.attributes;
+      });
+
       this.data = data;
-      this.isDataLoaded = true
+      this.isDataLoaded = true;
     }
   }
 };

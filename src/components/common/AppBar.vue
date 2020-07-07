@@ -18,7 +18,7 @@
           <v-tab to="/">Beranda</v-tab>
 
           <v-tab to="/indonesia">Covid-19 Indonesia</v-tab>
-          <v-tab to="/dunia">Covid-19 Dunia</v-tab>
+          <!-- <v-tab to="/dunia">Covid-19 Dunia</v-tab> -->
         </v-tabs>
 
       <v-spacer></v-spacer>        
@@ -27,7 +27,7 @@
             <v-list>
                 <v-list-item to="/" color="red">Beranda</v-list-item>
                 <v-list-item to="/indonesia" color="red">Covid-19 Indonesia</v-list-item>
-                <v-list-item to="/dunia" color="red">Covid-19 Dunia</v-list-item>
+                <!-- <v-list-item to="/dunia" color="red">Covid-19 Dunia</v-list-item> -->
             </v-list>
         </v-navigation-drawer>
         <v-btn icon  href="https://github.com/metaufiq/cegah-covid-web" target="_blank">
