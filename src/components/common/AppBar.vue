@@ -23,7 +23,7 @@
 
       <v-spacer></v-spacer>        
       <v-app-bar-nav-icon class="hidden-sm-and-up" @click="sidebar = !sidebar"></v-app-bar-nav-icon>
-        <v-navigation-drawer v-model="sidebar"  app hide-overlay  disable-resize-watcher=false>
+        <v-navigation-drawer v-model="sidebar"  app hide-overlay  disable-resize-watcher>
             <v-list>
                 <v-list-item to="/" color="red">Beranda</v-list-item>
                 <v-list-item to="/indonesia" color="red">Covid-19 Indonesia</v-list-item>

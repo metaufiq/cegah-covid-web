@@ -21,8 +21,12 @@
       loading="!this.isDataLoaded"
     >
       <template
-        #item.positif="{ item }"
-      >{{ item.attributes.Kasus_Posi - item.attributes.Kasus_Semb - item.attributes.Kasus_Meni }}</template>
+        #item.kasusPositif="{ item }"
+      >{{ (item.Kasus_Posi - item.Kasus_Semb - item.Kasus_Meni) | numFormat }}</template>
+      <template #item.kasusTotal="{ item }">{{ item.Kasus_Posi | numFormat }}</template>
+      <template #item.kasusSembuh="{ item }">{{ item.Kasus_Semb | numFormat }}</template>
+      <template #item.kasusMeninggal="{ item }">{{ item.Kasus_Meni | numFormat }}</template>
+
     </v-data-table>
   </v-card>
 </template>
@@ -44,30 +48,35 @@ export default {
           text: "Provinsi",
           align: "start",
           sortable: false,
-          value: "attributes.Provinsi",
-          
+          value: "Provinsi"
         },
-        { text: "Positif", value: "positif", sortable: false, align: "center",filter:false },
         {
-          text: "Sembuh",
-          value: "attributes.Kasus_Semb",
+          text: "Positif",
+          value: "kasusPositif",
           sortable: false,
           align: "center",
-          filter:false
+          filter: false
+        },
+        {
+          text: "Sembuh",
+          value: "kasusSembuh",
+          sortable: false,
+          align: "center",
+          filter: false
         },
         {
           text: "Meninggal",
-          value: "attributes.Kasus_Meni",
+          value: "kasusMeninggal",
           sortable: false,
           align: "center",
-          filter:false
+          filter: false
         },
         {
           text: "Total Kasus",
-          value: "attributes.Kasus_Posi",
+          value: "kasusTotal",
           sortable: false,
           align: "center",
-          filter:false
+          filter: false
         }
       ]
     };
@@ -79,7 +88,7 @@ export default {
     async fetchData() {
       let data = await kawalCoronaIndonesiaService.getIndonesiaProvincesCoronaData();
 
-      data = data.filter(provinsi => {
+      data = data.map(provinsi => {
         return provinsi.attributes;
       });
 
