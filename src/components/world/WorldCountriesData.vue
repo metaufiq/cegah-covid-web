@@ -21,6 +21,7 @@
       class="elevation-1"
       id="provinsi-table"
       loading="!this.isDataLoaded"
+      fixed-header
     >
       <template
         #item.positiveCase="{ item }"
@@ -121,10 +122,6 @@ export default {
         return items;
       }
     };
-  },
-
-  created() {
-    this.fetchData();
   }
 };
 </script>
