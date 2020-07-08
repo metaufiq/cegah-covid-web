@@ -56,7 +56,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <ShimmerIndonesiaCumulativeData v-else></ShimmerIndonesiaCumulativeData>
+      <ShimmerCumulativeData v-else></ShimmerCumulativeData>
 
     </v-col>
   </v-row>
@@ -65,11 +65,11 @@
 
 <script>
 import kawalCoronaIndonesiaService from "../../services/kawalCorona/IndonesiaService";
-import ShimmerIndonesiaCumulativeData from "./ShimmerIndonesiaCumulativeData"
+import ShimmerCumulativeData from "../common/ShimmerCumulativeData"
 export default {
   name: "IndonesiaCumulativeData",
   components:{
-    ShimmerIndonesiaCumulativeData
+    ShimmerCumulativeData
   },
   data() {
     return {

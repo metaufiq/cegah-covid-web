@@ -47,6 +47,6 @@
 
 <script>
 export default {
-  name: "ShimmerIndonesiaCumulativeData",
+  name: "ShimmerCumulativeData",
 };
 </script>

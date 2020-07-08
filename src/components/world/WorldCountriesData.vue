@@ -25,15 +25,11 @@
 
 
 <script>
-import kawalCoronaWorldService from "../../services/kawalCorona/WorldService";
-
 export default {
   name: "WorldCountriesData",
   data() {
     return {
-      isDataLoaded: false,
-      isConnectionLost: false,
-      data: [],
+
       headers: [
         {
           text: "Negara",
@@ -76,17 +72,6 @@ export default {
   created() {
     this.fetchData();
   },
-  methods: {
-    async fetchData() {
-      let data = await kawalCoronaWorldService.getWorldCoronaData();
 
-      data = data.filter(country => {
-        return country.attributes;
-      });
-
-      this.data = data;
-      this.isDataLoaded = true;
-    }
-  }
 };
 </script>
