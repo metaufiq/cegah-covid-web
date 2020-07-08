@@ -16,6 +16,8 @@
       :items="data"
       :items-per-page="5"
       :search="search"
+      :custom-sort="customSort"
+      :multi-sort="false"
       class="elevation-1"
       id="provinsi-table"
       loading="!this.isDataLoaded"
@@ -26,7 +28,6 @@
       <template #item.kasusTotal="{ item }">{{ item.Kasus_Posi | numFormat }}</template>
       <template #item.kasusSembuh="{ item }">{{ item.Kasus_Semb | numFormat }}</template>
       <template #item.kasusMeninggal="{ item }">{{ item.Kasus_Meni | numFormat }}</template>
-
     </v-data-table>
   </v-card>
 </template>
@@ -47,38 +48,74 @@ export default {
         {
           text: "Provinsi",
           align: "start",
-          sortable: false,
+          // sortable: false,
           value: "Provinsi"
         },
         {
           text: "Positif",
           value: "kasusPositif",
-          sortable: false,
           align: "center",
           filter: false
         },
         {
           text: "Sembuh",
           value: "kasusSembuh",
-          sortable: false,
+          // sortable: false,
           align: "center",
           filter: false
         },
         {
           text: "Meninggal",
           value: "kasusMeninggal",
-          sortable: false,
+          // sortable: false,
           align: "center",
           filter: false
         },
         {
           text: "Total Kasus",
           value: "kasusTotal",
-          sortable: false,
+          // sortable: false,
           align: "center",
           filter: false
         }
-      ]
+      ],
+      customSort: (items, index, isDesc) => {
+        items.sort((a, b) => {
+          if (index[0] === "kasusPositif") {
+            let dataA = a.Kasus_Posi - a.Kasus_Semb - a.Kasus_Meni;
+            let dataB = b.Kasus_Posi - b.Kasus_Semb - b.Kasus_Meni;
+            if (!isDesc[0]) {
+              return dataA - dataB;
+            } else {
+              return dataB - dataA;
+            }
+          }
+          if (index[0] === "kasusTotal") {
+            if (!isDesc[0]) {
+              return a.Kasus_Posi - b.Kasus_Posi;
+            } else {
+              return b.Kasus_Posi - a.Kasus_Posi;
+            }
+          }
+          if (index[0] === "kasusSembuh") {
+            if (!isDesc[0]) {
+              return a.Kasus_Semb - b.Kasus_Semb;
+            } else {
+              return b.Kasus_Semb - a.Kasus_Semb;
+            }
+          }
+          if (index[0] === "kasusMeninggal") {
+            if (!isDesc[0]) {
+              return a.Kasus_Meni - b.Kasus_Meni;
+            } else {
+              return b.Kasus_Meni - a.Kasus_Meni;
+            }
+          }
+        });
+        console.log([items, index, isDesc]);
+
+        return items;
+      }
     };
   },
   created() {
