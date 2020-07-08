@@ -1,7 +1,6 @@
 import Axios from "axios";
-import url from "../DisableCorsURL";
 
-const apiEndPoint = url+'https://api.kawalcorona.com/indonesia/';
+const apiEndPoint = 'https://api.kawalcorona.com/indonesia/';
 
 const getIndonesiaCoronaData = async () => {
     let response = await Axios.get(apiEndPoint + '', {
