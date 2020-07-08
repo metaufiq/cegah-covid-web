@@ -17,6 +17,17 @@
       :items-per-page="5"
       :search="search"
       :custom-sort="customSort"
+      :headerProps="headerProps"
+      :footer-props="{
+        showFirstLastPage: true,
+        itemsPerPageText: 'Baris per Halaman',
+        itemsPerPageOptions: [5, 10, 15, -1],
+        itemsPerPageAllText: 'Semua',
+        pageText: '{0} - {1} dari {2}'
+      }"
+      no-data-text="Data Tidak Ditemukan"
+      loading-text="Mengambil Data"
+      no-results-text="Data Tidak Ditemukan"
       :multi-sort="false"
       class="elevation-1"
       id="provinsi-table"
@@ -80,13 +91,16 @@ export default {
           filter: false
         }
       ],
+      headerProps: {
+        sortByText: "Urut Berdasarkan"
+      },
       customSort: (items, index, isDesc) => {
         items.sort((a, b) => {
           if (index[0] == "Provinsi") {
             if (!isDesc[0]) {
-              return a.Provinsi < b.Provinsi ? 1: -1;
+              return a.Provinsi < b.Provinsi ? 1 : -1;
             } else {
-              return b.Provinsi < a.Provinsi ? 1: -1;
+              return b.Provinsi < a.Provinsi ? 1 : -1;
             }
           }
           if (index[0] === "positiveCase") {
