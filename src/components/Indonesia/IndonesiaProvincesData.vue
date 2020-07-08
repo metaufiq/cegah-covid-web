@@ -82,6 +82,13 @@ export default {
       ],
       customSort: (items, index, isDesc) => {
         items.sort((a, b) => {
+          if (index[0] == "Provinsi") {
+            if (!isDesc[0]) {
+              return a.Provinsi < b.Provinsi ? 1: -1;
+            } else {
+              return b.Provinsi < a.Provinsi ? 1: -1;
+            }
+          }
           if (index[0] === "kasusPositif") {
             let dataA = a.Kasus_Posi - a.Kasus_Semb - a.Kasus_Meni;
             let dataB = b.Kasus_Posi - b.Kasus_Semb - b.Kasus_Meni;
@@ -113,7 +120,6 @@ export default {
             }
           }
         });
-        console.log([items, index, isDesc]);
 
         return items;
       }
