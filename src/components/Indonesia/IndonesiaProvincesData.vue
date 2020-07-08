@@ -23,11 +23,11 @@
       loading="!this.isDataLoaded"
     >
       <template
-        #item.kasusPositif="{ item }"
+        #item.positiveCase="{ item }"
       >{{ (item.Kasus_Posi - item.Kasus_Semb - item.Kasus_Meni) | numFormat }}</template>
-      <template #item.kasusTotal="{ item }">{{ item.Kasus_Posi | numFormat }}</template>
-      <template #item.kasusSembuh="{ item }">{{ item.Kasus_Semb | numFormat }}</template>
-      <template #item.kasusMeninggal="{ item }">{{ item.Kasus_Meni | numFormat }}</template>
+      <template #item.totalCase="{ item }">{{ item.Kasus_Posi | numFormat }}</template>
+      <template #item.recoveredCase="{ item }">{{ item.Kasus_Semb | numFormat }}</template>
+      <template #item.deathsCase="{ item }">{{ item.Kasus_Meni | numFormat }}</template>
     </v-data-table>
   </v-card>
 </template>
@@ -53,27 +53,27 @@ export default {
         },
         {
           text: "Positif",
-          value: "kasusPositif",
+          value: "positiveCase",
           align: "center",
           filter: false
         },
         {
           text: "Sembuh",
-          value: "kasusSembuh",
+          value: "recoveredCase",
           // sortable: false,
           align: "center",
           filter: false
         },
         {
           text: "Meninggal",
-          value: "kasusMeninggal",
+          value: "deathsCase",
           // sortable: false,
           align: "center",
           filter: false
         },
         {
           text: "Total Kasus",
-          value: "kasusTotal",
+          value: "totalCase",
           // sortable: false,
           align: "center",
           filter: false
@@ -88,7 +88,7 @@ export default {
               return b.Provinsi < a.Provinsi ? 1: -1;
             }
           }
-          if (index[0] === "kasusPositif") {
+          if (index[0] === "positiveCase") {
             let dataA = a.Kasus_Posi - a.Kasus_Semb - a.Kasus_Meni;
             let dataB = b.Kasus_Posi - b.Kasus_Semb - b.Kasus_Meni;
             if (!isDesc[0]) {
@@ -97,21 +97,21 @@ export default {
               return dataB - dataA;
             }
           }
-          if (index[0] === "kasusTotal") {
+          if (index[0] === "totalCase") {
             if (!isDesc[0]) {
               return a.Kasus_Posi - b.Kasus_Posi;
             } else {
               return b.Kasus_Posi - a.Kasus_Posi;
             }
           }
-          if (index[0] === "kasusSembuh") {
+          if (index[0] === "recoveredCase") {
             if (!isDesc[0]) {
               return a.Kasus_Semb - b.Kasus_Semb;
             } else {
               return b.Kasus_Semb - a.Kasus_Semb;
             }
           }
-          if (index[0] === "kasusMeninggal") {
+          if (index[0] === "deathsCase") {
             if (!isDesc[0]) {
               return a.Kasus_Meni - b.Kasus_Meni;
             } else {
