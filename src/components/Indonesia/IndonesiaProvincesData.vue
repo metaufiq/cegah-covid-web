@@ -7,6 +7,7 @@
         v-model="search"
         append-icon="mdi-magnify"
         label="Cari Provinsi"
+        color="red"
         single-line
         hide-details
       ></v-text-field>
