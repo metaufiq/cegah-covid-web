@@ -50,11 +50,11 @@ import kawalCoronaIndonesiaService from "../../services/kawalCorona/IndonesiaSer
 
 export default {
   name: "IndonesiaProvincesData",
+  
   data() {
     return {
       search: "",
       isDataLoaded: false,
-      isConnectionLost: false,
       data: [],
       headers: [
         {
@@ -139,6 +139,8 @@ export default {
       }
     };
   },
+  props:["isConnectionLost","setConnectionLost"],
+
   created() {
     this.fetchData();
   },
@@ -146,6 +148,10 @@ export default {
     async fetchData() {
       let data = await kawalCoronaIndonesiaService.getIndonesiaProvincesCoronaData();
 
+      if (data.status === 404) {
+        this.$props.setConnectionLost()
+        return
+      }
       data = data.map(provinsi => {
         return provinsi.attributes;
       });

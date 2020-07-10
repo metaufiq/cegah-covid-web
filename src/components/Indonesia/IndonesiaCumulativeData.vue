@@ -1,7 +1,8 @@
 <template>
   <v-row>
     <v-col>
-      <v-row class="justify-center align-center" v-if="this.isDataLoaded">
+
+      <v-row class="justify-center align-center" v-if="this.isDataLoaded && !isConnectionLost">
         <v-col>
           <v-card class="mx-auto" color="white">
             <v-row align="center" justify="center">
@@ -71,10 +72,10 @@ export default {
   components:{
     ShimmerCumulativeData
   },
+  
   data() {
     return {
       isDataLoaded: false,
-      isConnectionLost: false,
       data: {
         positif: "0",
         meninggal: "0",
@@ -83,13 +84,17 @@ export default {
       }
     };
   },
+  props:["isConnectionLost", "setConnectionLost"],
   created() {
     this.fetchData();
   },
   methods: {
     async fetchData() {
       let data = await kawalCoronaIndonesiaService.getIndonesiaCoronaData();
-
+      if (data.status === 404) {
+        this.$props.setConnectionLost()
+        return
+      }
       this.data = data;
       this.isDataLoaded = true
     }

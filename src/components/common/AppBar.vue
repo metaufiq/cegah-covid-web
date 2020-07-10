@@ -1,6 +1,6 @@
 <template>
     <div>
-    <v-app-bar app  color="white">
+    <v-app-bar app  color="white" :flat="isConnectionLost">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -45,5 +45,6 @@ export default {
             sidebar: false
         }
     },
+    props:["isConnectionLost"]
 }
 </script>
