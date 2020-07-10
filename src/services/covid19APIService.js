@@ -1,16 +1,27 @@
 import Axios from "axios";
+import BaseResponse from "./baseResponse";
 
 const apiEndPoint = 'https://api.covid19api.com';
 
 const getWorldCoronaData = async () => {
-    let response = await Axios.get(apiEndPoint + '/summary', {
-        headers: {
-            // remove headers
-        },
-        withCredentials: false
-    })
+    try {
+        let response = await Axios.get(apiEndPoint + '/summary', {
+            headers: {
+                // remove headers
+            },
+            withCredentials: false
+        })
+        return response.data
+    } catch (error) {
+        let response = BaseResponse;
+        response.data = error.message
+        response.status = 404
 
-    return response.data
+        return response
+    }
+
+
+
 }
 
 
